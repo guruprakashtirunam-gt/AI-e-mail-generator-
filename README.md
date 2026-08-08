@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Research Assistant using LangChain + RAG 📚
 
 A production-quality web application that allows users to upload PDF documents and ask questions about their content. The assistant uses Retrieval-Augmented Generation (RAG) to ensure it answers *only* using information retrieved from the uploaded documents, complete with source citations.
@@ -109,3 +110,23 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 **Topics/Tags:** `python` `langchain` `streamlit` `rag` `generative-ai` `faiss` `huggingface` `pdf-parsing` `gemini-api`
+=======
+# AI Email Generator
+
+An AI-powered email generator built with Streamlit and Google Gemini.
+
+## Setup
+
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Copy `.env.example` to `.env` and add your Gemini API Key.
+   ```bash
+   cp .env.example .env
+   ```
+3. Run the application:
+   ```bash
+   streamlit run app.py
+   ```
+>>>>>>> 41774d2c7f5d990ec6a33129693c4f68e2ddf262
