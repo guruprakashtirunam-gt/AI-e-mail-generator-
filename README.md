@@ -1,66 +1,51 @@
-<<<<<<< HEAD
-# AI Email Generator
+# Simple Local RAG Pipeline
 
-An AI-powered email generator built with Streamlit and Google Gemini.
+This is a lightweight, fully local Retrieval-Augmented Generation (RAG) pipeline built using Python. 
 
-## Setup
+It demonstrates how to ingest a text document, store its embeddings in a local vector database, retrieve relevant context based on a user query, and generate an answer using a local Large Language Model (LLM)—all without needing an internet connection for external APIs like OpenAI!
 
-1. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
+## Tech Stack
+* **Framework:** [LangChain](https://www.langchain.com/)
+* **Vector Database:** [ChromaDB](https://www.trychroma.com/)
+* **Embeddings Model:** `all-MiniLM-L6-v2` (via HuggingFace)
+* **Local LLM:** `gpt2` (via HuggingFace Transformers)
+
+## Prerequisites
+
+**Important:** You must use **Python 3.12** or **Python 3.11**. 
+*(Do not use Python 3.13+ as many Machine Learning libraries like PyTorch and ChromaDB do not yet have pre-compiled wheels for it, which will cause installation errors).*
+
+## Installation
+
+1. Open a terminal in this project folder.
+2. (Optional but recommended) Create and activate a Python virtual environment:
+   ```powershell
+   python -m venv venv
+   .\venv\Scripts\activate
    ```
-2. Copy `.env.example` to `.env` and add your Gemini API Key.
-   ```bash
-   cp .env.example .env
+3. Install the required dependencies:
+   ```powershell
+   pip install langchain langchain-community sentence-transformers chromadb transformers torch langchain-text-splitters
    ```
-3. Run the application:
-   ```bash
-   streamlit run app.py
-   ```
-=======
-# Agentic AI Showcase
+   *(Note: Downloading PyTorch might take a few minutes depending on your internet speed).*
 
-A modern, responsive web application demonstrating Agentic AI features. Built with React (Vite) and Node.js (Express), it features a premium aesthetic with glassmorphism, dark mode, and dynamic components.
+## Usage
 
-## Features
+Run the pipeline by executing the script:
+```powershell
+python rag_pipeline.py
+```
 
-- **Agentic Chat Interface**: An interactive chat UI that shows the agent's intermediate "Thinking" state.
-- **Visual Task Planner**: Breaks down complex user requests into step-by-step visual plans, displaying completion status.
-- **Execution & Status Simulator**: A dedicated status panel showing real-time updates on what the AI is currently doing (tool usage, background tasks).
+The first time you run the script, it will download the AI models (`all-MiniLM-L6-v2` and `gpt2`) to your local machine. Subsequent runs will be much faster.
 
-## Getting Started
+## How it Works
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v16+)
-
-### Installation & Setup
-
-1. **Clone or download this repository**
-2. **Start the Backend Server**
-   ```bash
-   cd backend
-   npm install
-   npm start
-   # or node server.js
-   ```
-   The backend API will run on `http://localhost:3001`
-
-3. **Start the Frontend Application**
-   ```bash
-   # Open a new terminal
-   cd frontend
-   npm install
-   npm run dev
-   ```
-   The frontend will typically run on `http://localhost:5173`. Open this URL in your browser.
-
-## Project Structure
-
-- `/frontend` - React application bootstrapped with Vite. Vanilla CSS used for styling.
-- `/backend` - Express.js backend containing mock endpoints to simulate AI planning and task execution.
-
-## Future Enhancements
-- Connect the backend `/api/chat` route to an actual LLM provider (OpenAI, Gemini).
-- Implement Server-Sent Events (SSE) or WebSockets in the backend for true real-time streaming of task progress.
->>>>>>> 4e9b604 (Initial commit or update message)
+The script (`rag_pipeline.py`) follows these 8 steps:
+1. **Load Document:** Takes a sample document (a Wikipedia article about Mango).
+2. **Chunking:** Splits the text into small, manageable chunks of 350 characters.
+3. **Embeddings:** Converts each chunk into a mathematical vector using `sentence-transformers`.
+4. **Vector Store:** Saves those vectors into a local Chroma vector database.
+5. **User Query:** Accepts a query (e.g., *"What vitamins are in mango?"*).
+6. **Retrieval:** Searches the Chroma database for the most relevant chunk of text.
+7. **Prompt Construction:** Combines the retrieved chunk with the user's query into a strict prompt.
+8. **Generation:** Passes the prompt to a local LLM (`gpt2`) to generate the final answer!
