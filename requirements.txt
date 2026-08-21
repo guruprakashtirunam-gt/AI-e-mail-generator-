@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+langchain
+langchain-community
+langchain-google-genai
+streamlit
+faiss-cpu
+sentence-transformers
+pypdf
+=======
 flask
 google-generativeai
+>>>>>>> 41774d2c7f5d990ec6a33129693c4f68e2ddf262
 python-dotenv

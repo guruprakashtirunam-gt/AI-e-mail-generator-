@@ -1,6 +1,61 @@
+<<<<<<< HEAD
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Environment Variables
+.env
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Streamlit
+.streamlit/
+secrets.toml
+
+# Data and Vector DB
+data/
+*.db
+*.faiss
+*.pkl
+*.pdf
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+=======
 .env
 __pycache__/
 *.pyc
 .venv/
 venv/
 env/
+>>>>>>> 41774d2c7f5d990ec6a33129693c4f68e2ddf262
